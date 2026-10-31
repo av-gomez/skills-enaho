@@ -26,6 +26,20 @@ Las skills activadas se leyeron del registro `stream-json` (llamadas a la herram
 
 Las tres skills se activaron en su pedido. No hizo falta cambiar ninguna `description`.
 
+## Pedido que activó dos skills seguidas
+
+En una copia **sin** `salidas/personas_2024.parquet`:
+
+| pedido | modo | skills que se activaron (en orden) | cifra obtenida | ¿ponderó? | figura |
+|---|---|---|---|---|---|
+| Grafica la pobreza de hombres y mujeres con la ENAHO 2024 | con skills | `graficando-enaho` → `limpiando-enaho` | Mujeres **27.7 %**, hombres **27.4 %**; antes validó 108,664 residentes y pobreza 27.58 % | Sí, `facpob07` | `figuras/pobreza_sexo.png`: dos barras azules desde 0, ordenadas, valor en cada barra, fuente al pie, 200 dpi |
+
+`graficando-enaho` no encontró el parquet y, como dice su `SKILL.md`, usó primero `limpiando-enaho`. Esa skill corrió `limpiar.py`, pasó la validación y luego se generó el gráfico (8 llamadas a herramientas, USD 0.30).
+
+## Comparación con la referencia del curso
+
+`sessions/16-skills-enaho/referencias/pobreza_departamento_2024.csv` coincide exactamente (diferencia máxima 0.0) con el método oficial que recalcula `mapear.py` (sumaria, `factor07*mieperho`). El mapa, que pondera con `facpob07` por regla, se separa como máximo 0.5 puntos (Loreto y Puno). Lima Metropolitana (`dominio == 8`): 28.21 % con la sumaria (referencia 28.2 %) y 28.03 % con `facpob07`.
+
 ## Lectura
 
 - **Con skills** los tres pedidos dan la cifra correcta, ponderada, con validación previa y figuras que cumplen las reglas fijas, en 4 llamadas a herramientas y unos USD 0.18–0.22 por pedido.

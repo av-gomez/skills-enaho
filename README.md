@@ -80,6 +80,8 @@ Cada pedido se corrió con `claude -p`, con skills y sin skills (`--disallowedTo
 | Grafica la pobreza urbana y rural | `graficando-enaho` → **24.7 % / 39.4 %**, figura con todas las reglas ✓ | igual, pero solo porque encontró el script de la skill en el repo |
 | Haz un mapa de la pobreza por departamento con la ENAHO 2024 | `mapeando-enaho` → **Cajamarca 45.0 %, Ica 5.9 %**, unión verificada ✓ | igual, leyendo a mano el `SKILL.md` y el script |
 
+**Dos skills seguidas:** sin el parquet, «Grafica la pobreza de hombres y mujeres con la ENAHO 2024» activó `graficando-enaho` → `limpiando-enaho`. Limpió y validó (27.58 %, 108,664) y graficó: mujeres 27.7 %, hombres 27.4 %.
+
 Las tres skills se activaron solas. La evaluación destapó dos problemas, ya corregidos: permisos en Windows (se añadió `allowed-tools`) y un argumento `$0` que no era un año.
 
 ## Estructura
