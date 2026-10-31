@@ -1,0 +1,8 @@
+# Microdatos del INEI: no se suben (descargar según README)
+datos/
+# Base derivada de los microdatos (se regenera con la skill limpiando-enaho)
+salidas/*.parquet
+# Python / uv
+.venv/
+__pycache__/
+*.pyc
